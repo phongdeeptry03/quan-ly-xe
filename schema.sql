@@ -9,5 +9,10 @@ create table if not exists trips (
   revenue numeric not null default 0,
   costs jsonb not null default '{}'::jsonb,
   cost numeric not null default 0,
-  profit numeric not null default 0
+  profit numeric not null default 0,
+  trip_count integer not null default 1
 );
+
+-- Nếu bảng trips đã tồn tại từ trước, chạy thêm dòng dưới đây trong Neon SQL Editor
+-- để thêm cột "Số chuyến thực tế" (mặc định 1 cho các dòng đã có sẵn):
+alter table trips add column if not exists trip_count integer not null default 1;
